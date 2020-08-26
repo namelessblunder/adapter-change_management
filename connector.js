@@ -202,6 +202,18 @@ processRequestResults(error, response, body, callback) {
    return callback(callBackData, callBackError);
 }
 
+formatResponseData(data){
+    return {
+        'change_ticket_number': data.number,
+        'active': data.active,
+        'priority': data.priority,
+        'description': data.description,
+        'work_start': data.work_start,
+        'work_end': data.work_end,
+        'change_ticket_key': data.sys_id
+    }
+}
+
 }
 
 module.exports = ServiceNowConnector;

@@ -186,17 +186,7 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * get() takes a callback function.
      */
-     let resultData = [];
-     log.info("Starting connection, calling getRecord");
-     this.connector.get((results,error)=>{
-         if(!error){
-             let obj = JSON.parse(results.body);
-             obj.result.forEach(data => {
-                 resultData.push(this.connector.formatResponseData(data));
-             });
-         }
-         callback(resultData,error);
-     });
+     this.connector.get((results,error)=>callback(results,error));
   }
 
   /**
@@ -215,15 +205,7 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * post() takes a callback function.
      */
-     let responseData = null;
-     log.info("Starting connection, calling postRecord")
-     this.connector.post((results,error)=>{
-         if(!error){
-             let obj = JSON.parse(results.body);
-             responseData = this.connector.formatResponseData(obj.result);
-         }
-         callback(responseData,error);
-     });
+     this.connector.post((results,error)=>callback(results,error));
   }
 }
 
